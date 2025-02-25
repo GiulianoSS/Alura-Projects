@@ -7,11 +7,11 @@ tokenizer = AutoTokenizer.from_pretrained(model_name)
 
 # Carregar o modelo e movê-lo explicitamente para a GPU (CUDA)
 model = AutoModelForCausalLM.from_pretrained(model_name,
-                                             torch_dtype=torch.float16,
+                                             torch_dtype=torch.float32,
                                              low_cpu_mem_usage=True)
 
 # Garantir que o modelo seja movido para a GPU
-model = model.to("cuda")
+model = model.to("cpu")
 
 # Configurar o pipeline de geração de texto
 pipe = pipeline(
