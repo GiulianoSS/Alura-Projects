@@ -1,38 +1,29 @@
-from transformers import AutoTokenizer, AutoModelForCausalLM, pipeline
-import torch
+import subprocess
 
-# Configuração do modelo LLaMA
-model_name = "adalbertojunior/Llama-3-8B-Instruct-Portuguese-v0.1"
-tokenizer = AutoTokenizer.from_pretrained(model_name)
-
-# Carregar o modelo e movê-lo explicitamente para a GPU (CUDA)
-model = AutoModelForCausalLM.from_pretrained(model_name,
-                                             torch_dtype=torch.float32,
-                                             low_cpu_mem_usage=True)
-
-# Garantir que o modelo seja movido para a GPU
-model = model.to("cpu")
-
-# Configurar o pipeline de geração de texto
-pipe = pipeline(
-    "text-generation",
-    model=model,
-    tokenizer=tokenizer,
-    max_new_tokens=150,
-)
-
-# Definir as variáveis
+# Variables
 numero_de_dias = 7
 numero_de_criancas = 2
 atividade = "praia"
-destino = "Florianópolis"
 
-# Criar o prompt
-prompt = f"Crie um roteiro de viagem de {numero_de_dias} dias para Florianópolis, para uma família com {numero_de_criancas} crianças que gostam de {atividade}."
+prompt = f"Crie um roteiro de viagem de {numero_de_dias} dias, para uma família com {numero_de_criancas} crianças, que gostam de {atividade}."
+print(prompt)
 
-# Gerar a resposta usando o pipeline configurado
-outputs = pipe(prompt)
+# Ollama's full folder path
+ollama_path = r"C:\Users\giuli\AppData\Local\Programs\Ollama\ollama.exe"
 
-# Extrair e imprimir a resposta gerada
-resposta = outputs[0]['generated_text']
-print(resposta)
+# Executing Ollama localy
+result = subprocess.run(
+    [ollama_path, "run", "mistral", prompt],
+    capture_output=True,
+    text=True
+)
+
+
+if result.returncode == 0:
+    print("Resposta")
+    print(result.stdout.strip)
+else:
+    print(f"Erro ao executar o Ollama: {result.stderr}")
+
+# Storing the generated response
+roteiro_viagem = result.stdout.strip()  # Ajuste para pegar só a parte da resposta
