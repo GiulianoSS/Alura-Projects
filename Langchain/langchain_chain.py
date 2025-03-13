@@ -30,7 +30,8 @@ city_chain = city_model | llm
 restaurants_chain = restaurants_model | llm
 cultural_chain = cultural_model | llm
 
-chain = city_chain | restaurants_chain | cultural_chain
+chain = (city_chain | restaurants_chain | cultural_chain).with_config(verbose=True)
+
 
 result = chain.invoke({"interesse": "praias"})
 print(result.content)
