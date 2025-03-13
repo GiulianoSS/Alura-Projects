@@ -2,12 +2,14 @@ from langchain_ollama import ChatOllama
 from langchain.prompts import PromptTemplate
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableSequence
+from langchain.globals import set_debug
 # from langchain.chains import LLMChain
 # from langchain.chains import SimpleSequentialChain
 import os
 from dotenv import load_dotenv
 
 load_dotenv()
+set_debug(True)
 
 llm = ChatOllama(
     model="mistral",
@@ -34,4 +36,4 @@ chain = (city_chain | restaurants_chain | cultural_chain).with_config(verbose=Tr
 
 
 result = chain.invoke({"interesse": "praias"})
-print(result.content)
+print(result)
