@@ -17,7 +17,7 @@ llm = ChatOllama(
     api_key=os.getenv("OLLAMA_API_KEY"))
 
 city_model = ChatPromptTemplate.from_template(
-    "Sugira uma cidade dado meu interesse por {interesse}"
+    "Sugira uma cidade dado meu interesse por {interesse}. Sua saída deve ser SOMENTE o nome da cidade. Cidade: "
 )
 
 restaurants_model = ChatPromptTemplate.from_template(
