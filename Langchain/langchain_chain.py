@@ -1,9 +1,13 @@
 from langchain_ollama import ChatOllama
 from langchain.prompts import PromptTemplate
 from langchain.prompts import ChatPromptTemplate
-from langchain.chains import LLMChain
+from langchain.schema.runnable import RunnableSequence
+# from langchain.chains import LLMChain
+# from langchain.chains import SimpleSequentialChain
 import os
 from dotenv import load_dotenv
+
+load_dotenv()
 
 llm = ChatOllama(
     model="mistral",
@@ -15,14 +19,18 @@ city_model = ChatPromptTemplate.from_template(
 )
 
 restaurants_model = ChatPromptTemplate.from_template(
-    Sugira restaurantes populates entre locais em {cidade}
+    "Sugira restaurantes populates entre locais em {cidade}"
 )
 
 cultural_model = ChatPromptTemplate.from_template(
     "Sugira atividades e locais culturais em {cidade}"
 )
 
-city_chain = LLMChain(prompt=city_model, llm=llm)
-restaurants_chain = LLMChain(prompt=restaurants_model, llm=llm)
-cultural_chain = LLMChain(prompt=cultural_model, llm=llm)
-load_dotenv()
+city_chain = city_model | llm
+restaurants_chain = restaurants_model | llm
+cultural_chain = cultural_model | llm
+
+chain = city_chain | restaurants_chain | cultural_chain
+
+result = chain.invoke({"interesse": "praias"})
+print(result.content)
