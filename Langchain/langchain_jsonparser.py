@@ -3,11 +3,8 @@ from langchain.prompts import PromptTemplate
 from langchain.prompts import ChatPromptTemplate
 from langchain.schema.runnable import RunnableSequence
 from langchain.globals import set_debug
-# from langchain_core.pydantic_v1 import Field, BaseModel
 from langchain_core.output_parsers import JsonOutputParser
 from pydantic import BaseModel, Field
-# from langchain.chains import LLMChain
-# from langchain.chains import SimpleSequentialChain
 import os
 from dotenv import load_dotenv
 
@@ -45,8 +42,7 @@ city_chain = city_model | llm
 restaurants_chain = restaurants_model | llm
 cultural_chain = cultural_model | llm
 
-# chain = (city_chain | restaurants_chain | cultural_chain).with_config(verbose=True)
-chain = (city_chain).with_config(verbose=True)
+chain = (city_chain | restaurants_chain | cultural_chain).with_config(verbose=True)
 
 result = chain.invoke({"interesse": "praias"})
 print(result)
