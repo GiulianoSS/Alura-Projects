@@ -42,7 +42,9 @@ part1 = city_model | llm | parser
 part2 = restaurants_model | llm | StrOutputParser()
 part3 = cultural_model | llm | StrOutputParser()
 
-chain = (part1 | part2 | part3)
+chain = (part1 | 
+         {"restaurants": part2, 
+          "cultural_locations": part3})
 
 # print(city_model.invoke({"interesse": "praias"}))
 
