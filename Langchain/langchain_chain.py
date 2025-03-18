@@ -21,7 +21,7 @@ city_model = ChatPromptTemplate.from_template(
 )
 
 restaurants_model = ChatPromptTemplate.from_template(
-    "Sugira restaurantes populates entre locais em {cidade}"
+    "Sugira restaurantes populares entre locais em {cidade}"
 )
 
 cultural_model = ChatPromptTemplate.from_template(
