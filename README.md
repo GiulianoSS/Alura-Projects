@@ -1,8 +1,8 @@
 # Alura-Projects
 
-This repository contains various projects and scripts related to data science and back-end development.
+This repository contains a variety of projects and codes related to data science studies and back-end development, created throughout courses at Alura and FIAP.
 
-## Contents
+## Extensions in this repo
 - Jupyter Notebooks (`.ipynb`)
 - Python scripts (`.py`)
 
