@@ -2,16 +2,16 @@
 
 This repository contains a variety of projects and codes related to data science studies and back-end development, created throughout courses at Alura and FIAP.
 
-## Extensions in this repo
+## File Formats Used in This Repository
 - Jupyter Notebooks (`.ipynb`)
 - Python scripts (`.py`)
 - Text file (`.txt`)
 - Python Pickle file (`.pkl`)
-- XXXXXXXX (`.xlsx`)
-- XXXXXXXX (`.db`)
-- XXXXXXXX (`.html`)
-- XXXXXXXX (`.xml`)
-- XXXXXXXX (`.json`)
+- Excel sheet (`.xlsx`)
+- Database (`.db`)
+- Hyper Text Markup Language (`.html`)
+- Extensible Markup Language (`.xml`)
+- JavaScript Object Notation (`.json`)
 
 ## Tools
 - Python (Pandas, NumPy, Matplotlib, etc.)
@@ -30,7 +30,7 @@ This repository contains a variety of projects and codes related to data science
 
 ### Data Analytics
 - **Pandas_conhecendo_a_biblioteca**:  
-  - Utilize Pandas' key features for project development  
+  - Utilize Pandas key features for project development  
   - Perform exploratory data analysis  
   - Build various types of charts  
   - Select specific data  
@@ -65,3 +65,6 @@ This repository contains a variety of projects and codes related to data science
   - Manipulate and process images
   - Extract text from images using Tesseract-OCR and Pytesseract
   - Utilize OpenCV (`cv2`) and `imutils` for image processing
+
+## Future improvements
+More info will be added to this read.me, including Machine Learning Projects description.
