@@ -1,7 +1,7 @@
 from langchain_ollama import ChatOllama
 from langchain.prompts import PromptTemplate
 from langchain.prompts import ChatPromptTemplate
-from langchain.schema.runnable import RunnableSequence
+from langchain.schema.runnable import RunnableSequence, RunnableLambda
 from langchain.globals import set_debug
 from langchain_core.output_parsers import StrOutputParser
 import os
