@@ -6,7 +6,7 @@ from langchain.globals import set_debug
 from langchain_core.output_parsers import StrOutputParser
 from langchain.memory import ConversationSummaryMemory
 from langchain_text_splitters import CharacterTextSplitter
-from langchain_community.document_loaders import TextLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain_ollama import OllamaEmbeddings
 from langchain.chains import RetrievalQA
 from langchain.vectorstores import FAISS
@@ -21,7 +21,8 @@ llm = ChatOllama(
     temperature=0.5,
     api_key=os.getenv("OLLAMA_API_KEY"))
 
-loader = TextLoader("data/GTB_gold_Nov23.txt", encoding="utf-8")
+loader = PyPDFLoader("data/GTB_gold_Nov23.pdf", autodetect_encoding=True)
+
 document = loader.load()
 chunker = CharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
 texts = chunker.split_documents(document)
